@@ -126,6 +126,7 @@ body {
   border-top: 2px solid #fff;
   border-bottom: 2px solid #fff;
   transition: all 1s ease 0s;
+  font-size: 2rem;
 }
 
 .logo-container {
@@ -133,17 +134,10 @@ body {
   border-bottom: none;
 }
 
-.tl-year p {
-  font-size: 2rem;
-}
-
 @media (min-width: 1024px) {
-  .tl-year p {
+  .tl-year {
     font-size: 1.5rem;
     margin: 1rem;
-  }
-
-  .tl-year {
     transform: translateX(0%) translateY(40%);
     text-align: center;
     margin: 3rem;
