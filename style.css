@@ -1,7 +1,7 @@
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
+  font-size: 1rem;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -18,11 +18,11 @@ body {
   }
 }
 
-/* #timeline:hover .tl-item {
-  width: 23.3333%;
-} */
-
 .tl-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   flex: 1;
   transform: translate3d(0, 0, 0);
   position: relative;
@@ -36,14 +36,11 @@ body {
 
 @media (min-width: 1024px) {
   .tl-item {
-    flex-direction: row;
-    /* width: 25%; */
     height: 100vh;
   }
 }
 
-.tl-item:before,
-.tl-item:after {
+.tl-item:before {
   transform: translate3d(0, 0, 0);
   content: "";
   position: absolute;
@@ -51,22 +48,8 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-}
-
-.tl-item:after {
-  /* background: #f591b7; */
-  background: linear-gradient(to bottom, #f591b7 0%, rgb(0, 0, 0, 0) 100%);
-  opacity: 0.85;
-  transition: opacity 0.5s ease;
-}
-
-.tl-item:before {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #1a1a1a 100%);
-  z-index: 1;
-  opacity: 1;
-  transform: translate3d(0, 0, 0) translateY(25%);
-
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  background: linear-gradient(180deg, rgba(245, 145, 183, 0.95) 0%, rgba(26, 26, 26, 0.65) 100%);
+  z-index: -1;
 }
 
 
@@ -89,13 +72,14 @@ body {
 
 @media (min-width: 1024px) {
   .tl-item:before {
-    opacity: 0;
-    transform: none;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #1a1a1a 60%);
+    background: #f591b7;
+    opacity: 0.75;
   }
 
   .tl-item:hover:before {
     opacity: 1;
+    background: #1a1a1a;
+    opacity: 0.75;
     transition: opacity 1s ease, transform 1s ease 0.25s;
   }
 }
@@ -108,6 +92,12 @@ body {
     transition: none;
   }
 
+  .tl-content {
+    position: absolute;
+    transform: translate3d(0, 0, 0) translateY(25%);
+    z-index: 1;
+  }
+
   .tl-item:hover .tl-content {
     opacity: 1;
     transform: translateY(0);
@@ -115,15 +105,10 @@ body {
   }
 }
 
-
-
 .tl-content {
   transition: all 0.75s ease 0.5s;
-  position: absolute;
-  z-index: 1;
   text-align: center;
   margin: 0 10%;
-  top: 35%;
   opacity: 1;
 }
 
@@ -131,18 +116,13 @@ body {
   font-family: "Pathway Gothic One", Helvetica Neue, Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   color: #ffffff;
-  font-size: 1.44rem;
+  font-size: 1.5rem;
   font-weight: normal;
   transition: all 1s ease 0s;
 }
 
 .tl-year {
   display: flex;
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: 1;
   border-top: 2px solid #fff;
   border-bottom: 2px solid #fff;
   transition: all 1s ease 0s;
@@ -153,20 +133,25 @@ body {
   border-bottom: none;
 }
 
+.tl-year p {
+  font-size: 2rem;
+}
+
 @media (min-width: 1024px) {
+  .tl-year p {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+
   .tl-year {
-    top: 50%;
+    transform: translateX(0%) translateY(40%);
+    text-align: center;
+    margin: 3rem;
   }
 
   .tl-item:hover .tl-year {
-    top: 45%;
-    left: 50%;
+    transform: translateX(0%) translateY(-30%);
   }
-}
-
-.tl-year p {
-  /* font-family: "Pathway Gothic One", Helvetica Neue, Helvetica, Arial, sans-serif; */
-  font-size: 1.728rem;
 }
 
 .tl-bg {
@@ -180,19 +165,19 @@ body {
   background-position: center center;
   transition: filter 0.5s ease;
   filter: grayscale(100%);
+  z-index: -2;
 }
 
 .header {
   width: 100vw;
-  z-index: 1;
   background-color: white;
 }
 
 @media (min-width: 1024px) {
   .header {
-    padding: 2rem;
+    padding: 2rem 0;
     position: absolute;
-    background-color: none;
+    z-index: 1;
   }
 }
 
@@ -203,20 +188,41 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 1rem 0;
 }
 
 .logo {
-  
+
   object-fit: cover;
   width: 40%;
   height: 100px;
   margin: 0;
 }
 
-a:link    { color: white; text-decoration: underline; }
-a:visited { color: white; text-decoration: underline; }
-a:hover   { color: white; text-decoration: underline; }
-a:active  { color: white; text-decoration: underline; }
-.special-link, .special-link:visited, .special-link:hover, .special-link:active {
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+a:active {
+  color: white;
+}
+
+a:-webkit-any-link {
+  color: white;
+  text-decoration: none;
+}
+
+.special-link,
+.special-link:visited,
+.special-link:hover,
+.special-link:active {
   color: inherit;
 }
